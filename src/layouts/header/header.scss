@@ -1,1 +1,43 @@
 @import '../../assets/sass/main.scss';
+
+.header{
+    background-color: $color-grey-dark-1;
+    padding: 1.5rem 15rem;
+    
+    .navigation{
+
+        &-list{
+            display: flex;
+            list-style: none;
+        }
+
+        &-item{
+            transition: all .2s;
+            display: flex;
+            align-items: center;
+
+            i{
+                font-size: 1.3rem;
+                color: $color-grey-light-1;
+                cursor: pointer;
+            }
+
+            &:not(:last-child){
+                margin-right: 2rem;    
+            }
+        }
+
+        &-link{
+            color: $color-grey-light-1;
+            font-size: 1.3rem;
+            font-weight: 300;
+            text-decoration: none;
+            transition: all .2s;
+
+            &:hover, &:active{
+                color: $color-primary;
+                text-decoration: underline $color-grey-light-1;
+            }
+        }
+    }
+}

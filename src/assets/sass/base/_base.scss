@@ -1,5 +1,6 @@
 html{
     font-size: 62.5%; //1rem = 10px
+    background-color: $color-white;
 }
 
 *{
@@ -10,8 +11,11 @@ html{
 
 body{
     box-sizing: border-box;
-    padding: 3rem;
-
+    margin: 2rem;
+    background-image: linear-gradient(to left bottom, rgba($color-primary-light, .85), rgba($color-primary-dark, .75));
+    background-position: center;
+    background-size: cover;
+    min-height: 100vh;
     ::selection{
         
     }
