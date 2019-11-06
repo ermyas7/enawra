@@ -1,11 +1,13 @@
-import React from 'react';
-import './App.css';
-
+import React, {Fragment} from 'react';
+import './assets/sass/main.scss';
+import Header from './layouts/header';
+import Home from './pages/home';
 function App() {
   return (
-    <div className="App">
-     <h1>Enawra</h1>
-    </div>
+    <Fragment>
+      <Header/>
+      <Home/>
+    </Fragment>
   );
 }
 
