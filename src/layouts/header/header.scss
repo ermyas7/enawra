@@ -3,7 +3,7 @@
 .header{
     background-color: $color-grey-dark-1;
     padding: 1.5rem 15rem;
-    
+
     .navigation{
 
         &-list{
@@ -32,6 +32,7 @@
             font-size: 1.3rem;
             font-weight: 300;
             text-decoration: none;
+            text-transform: uppercase;
             transition: all .2s;
 
             &:hover, &:active{
