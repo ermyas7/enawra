@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import './blogs.scss'
 import BlogItem from './BlogItem'
+import AddBlog from '../../components/blogForm/AddBlog';
 
 const mockPosts = [
     {
@@ -35,10 +36,15 @@ const mockPosts = [
 
  const Index = () => {
      const [posts, setPosts] = useState(mockPosts);
+     const [addPost, setAddPost] = useState(false);
 
     return (
         <div className="blog">
-            <button className="blog-add">Add Blog</button>
+            {/* {   !addPost?
+                <button className="blog-add"
+                onClick={() => setAddPost(true)}>Add Blog</button> : <AddBlog/>  */
+                <AddBlog/>}
+
             <div className="blog-lists">
                 {
                     posts.map(post => (
