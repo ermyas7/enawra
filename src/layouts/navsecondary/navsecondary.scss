@@ -1,10 +1,11 @@
 @import '../../assets/sass/abstracts/variables';
 
 .header-secondary{
-    padding: 2.5rem 15rem;
+    padding: 1.5rem 15rem;
     display: flex;
     justify-content: space-between;
     color: $color-grey-light-2;
+    border-bottom: 1px solid $color-grey-light-2;
 
     h1{
         font-size: 3.5rem;

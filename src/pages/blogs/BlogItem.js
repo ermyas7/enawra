@@ -1,18 +1,18 @@
 import React from 'react'
 
-const BlogItem = () => {
+const BlogItem = ({post}) => {
     return (
         <div className="blog-card">
             <div className="blog-header">
-            <p className="blog-date">oct 22, 2019</p>
+            <p className="blog-date">{post.date}</p>
             <h1 className="blog-title">
-                this is awesome title
+                {post.title}
             </h1>
             </div>
             <div className="blog-img"  style={blogImg}></div>
             <div className="blog-body">
                 <p className="blog-body-text">
-                It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                {post.body}
                 </p>
             </div>
             <div className="blog-footer">
@@ -23,7 +23,7 @@ const BlogItem = () => {
                 </div>
                 <div className="blog-badge blog-badge-red">
                 <i className="far fa-user"></i>
-                    <p>Ermyas</p>
+                    <p>{post.author}</p>
                 </div>
                 <div className="blog-badge blog-badge-red">
                     <p>Rate</p>
@@ -32,20 +32,13 @@ const BlogItem = () => {
                 </div>
 
                 <div className="blog-footer-bottom">
-                <div className="blog-badge blog-badge-green">
-                    <p>Read</p>
-                    <i className="fas fa-tags"></i>
+                {post.tags.map((tag, idx) => (
+                    <div className="blog-badge  blog-badge-green" key={idx}>
+                        <p>{tag}</p>
+                        <i className="fas fa-tags"></i>
+                    </div>
+                ))}                
                 </div>
-                <div className="blog-badge blog-badge-green">
-                    <p>Ermyas</p>
-                    <i className="fas fa-tags"></i>
-                </div>
-                <div className="blog-badge blog-badge-green">
-                    <p>Rate</p>
-                    <i class="fas fa-tags"></i>
-                </div>
-                </div>
-                
             </div>       
         </div>
     )
