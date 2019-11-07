@@ -38,6 +38,7 @@ const mockPosts = [
 
     return (
         <div className="blog">
+            <button className="blog-add">Add Blog</button>
             <div className="blog-lists">
                 {
                     posts.map(post => (
