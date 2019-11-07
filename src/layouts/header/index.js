@@ -7,19 +7,19 @@ const index = () => {
             <div className="navigation">
                 <ul className="navigation-list">
                     <li className="navigation-item">
-                    <i class="fas fa-bars"></i>
+                    <i className="fas fa-bars"></i>
                     </li>
                     <li className="navigation-item">
                         <Link className="navigation-link" to="/">Home</Link>
                     </li>
                     <li className="navigation-item">
-                        <Link className="navigation-link" to="#">Blog</Link>
+                        <Link className="navigation-link" to="/blogs">Blogs</Link>
                     </li>
                     <li className="navigation-item">
                         <Link className="navigation-link" to="#">Community</Link>
                     </li>
                     <li className="navigation-item">
-                        <Link className="navigation-link" to="#">About</Link>
+                        <Link className="navigation-link" to="/about">About</Link>
                     </li>
                     <li className="navigation-item">
                         <Link className="navigation-link" to="#">Contact Us</Link>

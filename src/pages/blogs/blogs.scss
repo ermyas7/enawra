@@ -1,0 +1,79 @@
+@import '../../assets/sass/abstracts/variables';
+
+.blog{
+    padding: 0 15rem;
+    padding-bottom: 5rem;
+
+    &-lists{
+       width: max-content;
+    }
+
+    &-card{
+        background-color: $color-grey-light-2;
+        box-shadow: 0 1rem 4rem rgba($color-black, .15);
+
+        &:not(:last-child){
+            margin-bottom: 1rem;
+        }
+    }
+
+    &-header{
+        padding: 1rem;
+        text-transform: capitalize;
+    }
+
+    &-date{
+        text-transform: uppercase;
+        margin-bottom: .5rem;
+        color: $color-grey-dark-1;
+    }
+
+    &-title{
+        font-size: 2.5rem;
+        color: $color-secondary-dark;
+    }
+
+    &-footer{
+        padding: 1rem;
+        background-image: linear-gradient(to right bottom, rgba($color-grey-dark-3, 0.5), rgba($color-grey-light-2, 0.9));
+
+        &-top{
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: .7rem;
+        }
+
+        &-bottom{
+            display: flex;
+
+             >* {
+                margin-right: 1rem;
+            }
+        }
+    }
+
+    &-badge{
+        display: flex;
+        align-items: center;
+        padding: .5rem 1rem;
+        border-radius: .5rem;
+        cursor: pointer;
+        transition: all .3s;
+        color: $color-white;
+        >*:not(:last-child){
+            margin-right: 1rem;
+        }
+
+        &:hover{
+            transform: scale(1.05);
+        }
+
+        &-red{
+            background-image: linear-gradient(to right bottom, rgba($color-secondary-dark, 0.95), rgba($color-secondary-light, .9));
+        }
+
+        &-green{
+            background-image: linear-gradient(to right bottom, rgba($color-tertiary-dark, 0.95), rgba($color-tertiary-light, .9));  
+        }
+    }
+}
