@@ -1,0 +1,19 @@
+@import '../../assets/sass/abstracts/variables';
+
+.header-secondary{
+    padding: 2.5rem 15rem;
+    display: flex;
+    justify-content: space-between;
+    color: $color-grey-light-2;
+
+    h1{
+        font-size: 3.5rem;
+        text-transform: uppercase;
+        font-weight: 300;
+    }
+
+    h2{
+        font-size: 1.8rem;
+        font-weight: 500;
+    }
+}
