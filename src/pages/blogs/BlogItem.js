@@ -9,7 +9,12 @@ const BlogItem = () => {
                 this is awesome title
             </h1>
             </div>
-            <img src="https://source.unsplash.com/user/erondu/700x300" alt="blog pic" className="blog-img"/>
+            <div className="blog-img"  style={blogImg}></div>
+            <div className="blog-body">
+                <p className="blog-body-text">
+                It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                </p>
+            </div>
             <div className="blog-footer">
                 <div className="blog-footer-top">
                 <div className="blog-badge blog-badge-red">
@@ -46,5 +51,8 @@ const BlogItem = () => {
     )
 }
 
+const blogImg = {
+    backgroundImage: 'url(https://source.unsplash.com/user/erondu/1600x900)'
+}
 
 export default BlogItem
