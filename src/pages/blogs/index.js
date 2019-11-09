@@ -1,5 +1,7 @@
-import React, {useState} from 'react'
-import uuidv1 from 'uuid/v1';
+import React, {useState, useEffect} from 'react'
+import uuidv1 from 'uuid/v1'
+
+import {firestore} from '../../firebase'
 import './blogs.scss'
 import BlogItem from './BlogItem'
 import AddBlog from '../../components/blogForm/AddBlog';
@@ -52,7 +54,7 @@ const mockPosts = [
             post.id = uuidv1();
             post.author = 'Muna';
             post.date = 'oct 15, 2019';
-            post.tags = [...post.tags.split(" ")];
+            post.tags = [...post.tags.split(",")];
             const newPosts = [...posts,post];
             console.log(newPosts);
             setPosts(newPosts);
@@ -60,6 +62,12 @@ const mockPosts = [
             setAddPost(false);
         }
     }
+
+    useEffect(() => {
+        firestore.collection('posts')
+        .get()
+        .then(snap => console.log({snap}))
+    })
     return (
         <div className="blog">
             {  
