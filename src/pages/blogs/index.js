@@ -36,6 +36,7 @@ import AddBlog from '../../components/blogForm/AddBlog'
     const removePost = async id => {
         const newPosts = posts.filter(post => id !== post.id);
         setPosts(newPosts);
+        await firestore.doc(`posts/${id}`).delete()
     }
 
     const getPosts = async () => {
