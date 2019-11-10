@@ -23,6 +23,7 @@ import AddBlog from '../../components/blogForm/AddBlog'
         if(post.title && post.body&&post.image && post.tags){
             post.author = 'Muna';
             post.date = 'oct 15, 2019';
+            post.star = 0;
             post.tags = [...post.tags.split(",")];
             const docRef = await firestore.collection('posts').add(post);
             setPost({});
@@ -30,8 +31,9 @@ import AddBlog from '../../components/blogForm/AddBlog'
         }
     }
 
-    const removePost = async id => {
-        await firestore.doc(`posts/${id}`).delete()
+    const updatePost = async post => {
+        setAddPost(true);
+        setPost(post)
     }
 
     //store a function to clean up after the component unmount
@@ -62,7 +64,7 @@ import AddBlog from '../../components/blogForm/AddBlog'
             <div className="blog-lists">
                 {
                     posts.map(post => (
-                        <BlogItem key={post.id} post={post} removeHandler={removePost}/>
+                        <BlogItem key={post.id} post={post}/>
                     ))
                 }
             </div>
