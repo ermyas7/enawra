@@ -25,30 +25,30 @@ import AddBlog from '../../components/blogForm/AddBlog'
             post.date = 'oct 15, 2019';
             post.tags = [...post.tags.split(",")];
             const docRef = await firestore.collection('posts').add(post);
-            const doc = await docRef.get();
-            const newPost = collectIdsAndDocs(doc);
-            setPosts([newPost, ...posts]);
             setPost({});
             setAddPost(false);
         }
     }
 
     const removePost = async id => {
-        const newPosts = posts.filter(post => id !== post.id);
-        setPosts(newPosts);
         await firestore.doc(`posts/${id}`).delete()
     }
 
-    const getPosts = async () => {
-        const snapshot = await firestore.collection('posts')
-        .get()
-        const posts = snapshot.docs.map(collectIdsAndDocs)
-        console.log(posts)
-        setPosts(posts)
-    }
+    //store a function to clean up after the component unmount
+    let unsubscribe = null
+
     useEffect( () => {
-      getPosts()  
+      unsubscribe = firestore.collection('posts')
+      .onSnapshot(snapshot => {
+          const posts = snapshot.docs.map(collectIdsAndDocs)
+          setPosts(posts)
+      })  
     }, [])
+
+    useEffect( () => {
+        return () =>  unsubscribe();
+      }, [])
+
     return (
         <div className="blog">
             {  
