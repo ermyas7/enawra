@@ -18,15 +18,16 @@ import AddBlog from '../../components/blogForm/AddBlog'
         setPost(post);
     }
 
-    const _addPost = () => {
-        console.log(post);
+    const _addPost = async () => {
+
         if(post.title && post.body&&post.image && post.tags){
             post.author = 'Muna';
             post.date = 'oct 15, 2019';
             post.tags = [...post.tags.split(",")];
-            const newPosts = [...posts,post];
-            console.log(newPosts);
-            setPosts(newPosts);
+            const docRef = await firestore.collection('posts').add(post);
+            const doc = await docRef.get();
+            const newPost = collectIdsAndDocs(doc);
+            setPosts([newPost, ...posts]);
             setPost({});
             setAddPost(false);
         }
