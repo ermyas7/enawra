@@ -1,6 +1,6 @@
 import React from 'react'
 
-const BlogItem = ({post}) => {
+const BlogItem = ({post, removeHandler}) => {
     return (
         <div className="blog-card">
             <div className="blog-header">
@@ -29,7 +29,7 @@ const BlogItem = ({post}) => {
                     <p>Rate</p>
                     <i className="fas fa-star"></i>
                 </div>
-                <div className="blog-badge blog-badge-delete">
+                <div className="blog-badge blog-badge-delete" onClick={() => removeHandler(post.id)}>
                 <i className="fas fa-trash-alt danger"></i>
                 </div>
                 </div>

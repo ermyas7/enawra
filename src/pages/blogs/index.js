@@ -33,6 +33,11 @@ import AddBlog from '../../components/blogForm/AddBlog'
         }
     }
 
+    const removePost = async id => {
+        const newPosts = posts.filter(post => id !== post.id);
+        setPosts(newPosts);
+    }
+
     const getPosts = async () => {
         const snapshot = await firestore.collection('posts')
         .get()
@@ -56,7 +61,7 @@ import AddBlog from '../../components/blogForm/AddBlog'
             <div className="blog-lists">
                 {
                     posts.map(post => (
-                        <BlogItem key={post.id} post={post}/>
+                        <BlogItem key={post.id} post={post} removeHandler={removePost}/>
                     ))
                 }
             </div>
