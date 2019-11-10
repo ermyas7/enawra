@@ -29,6 +29,9 @@ const BlogItem = ({post}) => {
                     <p>Rate</p>
                     <i className="fas fa-star"></i>
                 </div>
+                <div className="blog-badge blog-badge-delete">
+                <i className="fas fa-trash-alt danger"></i>
+                </div>
                 </div>
 
                 <div className="blog-footer-bottom">
