@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 
 import Blogs from './Blogs'
+import Register from '../../components/blogForm/Register'
 
 import {firestore} from '../../firebase'
 import {collectIdsAndDocs} from '../../utilis'
@@ -10,6 +11,7 @@ import {collectIdsAndDocs} from '../../utilis'
      const [posts, setPosts] = useState([]);
      const [addPost, setAddPost] = useState(false);
     const [post, setPost] = useState({});
+    const [user, setUser] = useState(null);
 
     const _changeHandler = (evt) => {
         const {name, value} = evt.target;
@@ -46,7 +48,9 @@ import {collectIdsAndDocs} from '../../utilis'
       }, [])
 
     return (
-        <Blogs posts={posts} _addPost={_addPost} setAddPost={setAddPost} _changeHandler={_changeHandler} addPost={addPost} post={post}/>        
+        
+            user? (<Blogs posts={posts} _addPost={_addPost} setAddPost={setAddPost} _changeHandler={_changeHandler} addPost={addPost} post={post}/>
+        ) : <Register/>
     )
 }
 
