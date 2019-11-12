@@ -1,11 +1,10 @@
 import React, {useState, useEffect} from 'react'
 
+import Blogs from './Blogs'
+
 import {firestore} from '../../firebase'
 import {collectIdsAndDocs} from '../../utilis'
 
-import './blogs.scss'
-import BlogItem from './BlogItem'
-import AddBlog from '../../components/blogForm/AddBlog'
 
  const Index = () => {
      const [posts, setPosts] = useState([]);
@@ -31,11 +30,6 @@ import AddBlog from '../../components/blogForm/AddBlog'
         }
     }
 
-    const updatePost = async post => {
-        setAddPost(true);
-        setPost(post)
-    }
-
     //store a function to clean up after the component unmount
     let unsubscribe = null
 
@@ -52,23 +46,7 @@ import AddBlog from '../../components/blogForm/AddBlog'
       }, [])
 
     return (
-        <div className="blog">
-            {  
-                !addPost?
-                <button className="blog-add"
-                onClick={() => setAddPost(true)}>Add Blog</button> :
-                <AddBlog changeHandler = {_changeHandler} post={post}
-                addPost={_addPost}/>
-                }
-
-            <div className="blog-lists">
-                {
-                    posts.map(post => (
-                        <BlogItem key={post.id} post={post}/>
-                    ))
-                }
-            </div>
-        </div>
+        <Blogs posts={posts} _addPost={_addPost} setAddPost={setAddPost} _changeHandler={_changeHandler} addPost={addPost} post={post}/>        
     )
 }
 
