@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import {signInWithGoogle} from '../../firebase'
 
 const Register = () => {
     return (
@@ -7,7 +8,7 @@ const Register = () => {
             <div className="register-left">
                 <div className="register-brand">Enchawet</div>
                 <h2 className="register-heading">Start Interacting</h2>
-                <div className="register-google">
+                <div className="register-google" onClick={signInWithGoogle}>
                     <i className="fab fa-google-plus-g"></i>
                     <span>Sign In With Google</span>
                 </div>

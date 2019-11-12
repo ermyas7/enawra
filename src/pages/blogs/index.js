@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react'
 import Blogs from './Blogs'
 import Register from '../../components/blogForm/Register'
 
-import {firestore} from '../../firebase'
+import {firestore, auth} from '../../firebase'
 import {collectIdsAndDocs} from '../../utilis'
 
 
@@ -33,18 +33,27 @@ import {collectIdsAndDocs} from '../../utilis'
     }
 
     //store a function to clean up after the component unmount
-    let unsubscribe = null
+    let unsubscribeFromFirestore = null
+    let unsubscribeFromAuth = null
 
     useEffect( () => {
-      unsubscribe = firestore.collection('posts')
+    unsubscribeFromFirestore = firestore.collection('posts')
       .onSnapshot(snapshot => {
           const posts = snapshot.docs.map(collectIdsAndDocs)
           setPosts(posts)
-      })  
+      })
+      
+    unsubscribeFromAuth = auth.onAuthStateChanged(user => {
+        console.log(user)
+    })  
     }, [])
 
     useEffect( () => {
-        return () =>  unsubscribe();
+        return () =>  unsubscribeFromFirestore();
+      }, [])
+
+      useEffect( () => {
+        return () =>  unsubscribeFromAuth();
       }, [])
 
     return (
