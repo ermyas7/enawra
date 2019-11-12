@@ -22,7 +22,10 @@ import {collectIdsAndDocs} from '../../utilis'
     const _addPost = async () => {
 
         if(post.title && post.body&&post.image && post.tags){
-            post.author = 'Muna';
+            post.author = {
+                displayName: user.displayName,
+                email: user.email,
+                photoURL: user.photoURL}
             post.date = 'oct 15, 2019';
             post.star = 0;
             post.tags = [...post.tags.split(",")];
@@ -44,7 +47,7 @@ import {collectIdsAndDocs} from '../../utilis'
       })
       
     unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-        console.log(user)
+        setUser(user)
     })  
     }, [])
 
@@ -55,7 +58,6 @@ import {collectIdsAndDocs} from '../../utilis'
       useEffect( () => {
         return () =>  unsubscribeFromAuth();
       }, [])
-
     return (
         
             user? (<Blogs posts={posts} _addPost={_addPost} setAddPost={setAddPost} _changeHandler={_changeHandler} addPost={addPost} post={post}/>

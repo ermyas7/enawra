@@ -20,7 +20,7 @@ const Register = () => {
                     <button className="register-btn">Sign up</button>
                 </form>
                 <div className="register-already">
-                    Have an account? <Link className="register-already-link">Log in <i className="fas fa-arrow-right"></i></Link>
+                    Have an account? <Link className="register-already-link" to="/blogs">Log in <i className="fas fa-arrow-right"></i></Link>
                 </div>
             </div>
             <div className="register-right">

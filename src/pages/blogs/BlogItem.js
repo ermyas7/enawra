@@ -28,7 +28,7 @@ const BlogItem = ({post}) => {
                 </div>
                 <div className="blog-badge blog-badge-red">
                 <i className="far fa-user"></i>
-                    <p>{post.author}</p>
+                    <p>{post.author.displayName}</p>
                 </div>
                 <div className="blog-badge blog-badge-red">
                     <p>{post.star}</p>
