@@ -1,42 +1,14 @@
-import React, {useState} from 'react'
-import uuidv1 from 'uuid/v1';
+import React, {useState, useEffect} from 'react'
+
+import {firestore} from '../../firebase'
+import {collectIdsAndDocs} from '../../utilis'
+
 import './blogs.scss'
 import BlogItem from './BlogItem'
-import AddBlog from '../../components/blogForm/AddBlog';
-
-const mockPosts = [
-    {
-        id: '1',
-        title: 'Introduction',
-        body: 't. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English.',
-        author: 'Ermyas',
-        tags: ['sport', 'life style', 'fun'],
-        image: 'https://source.unsplash.com/user/erondu/1600x900',
-        date: 'oct 22, 2019'
-    },
-    {
-        id: '2',
-        title: 'Greetings',
-        body: ' The point of using Lorem Ipsum is that it has a more-or-less normal',
-        author: 'Ermyas',
-        tags: ['sport', 'life style', 'fun'],
-        image: 'https://source.unsplash.com/user/eron/1600x900',
-        date: 'oct 15, 2019'
-    },
-    {
-        id: '3',
-        title: 'Action',
-        body: ' The point of using Lorem Ipsum is that it has a more-or-less normal',
-        author: 'Bereket',
-        tags: ['sport', 'coffee', 'faffy'],
-        image: 'https://source.unsplash.com/user/ero/1600x900',
-        date: 'oct 15, 2019'
-    },
-
-]
+import AddBlog from '../../components/blogForm/AddBlog'
 
  const Index = () => {
-     const [posts, setPosts] = useState(mockPosts);
+     const [posts, setPosts] = useState([]);
      const [addPost, setAddPost] = useState(false);
     const [post, setPost] = useState({});
 
@@ -46,20 +18,39 @@ const mockPosts = [
         setPost(post);
     }
 
-    const _addPost = () => {
-        console.log(post);
+    const _addPost = async () => {
+
         if(post.title && post.body&&post.image && post.tags){
-            post.id = uuidv1();
             post.author = 'Muna';
             post.date = 'oct 15, 2019';
-            post.tags = [...post.tags.split(" ")];
-            const newPosts = [...posts,post];
-            console.log(newPosts);
-            setPosts(newPosts);
+            post.star = 0;
+            post.tags = [...post.tags.split(",")];
+            const docRef = await firestore.collection('posts').add(post);
             setPost({});
             setAddPost(false);
         }
     }
+
+    const updatePost = async post => {
+        setAddPost(true);
+        setPost(post)
+    }
+
+    //store a function to clean up after the component unmount
+    let unsubscribe = null
+
+    useEffect( () => {
+      unsubscribe = firestore.collection('posts')
+      .onSnapshot(snapshot => {
+          const posts = snapshot.docs.map(collectIdsAndDocs)
+          setPosts(posts)
+      })  
+    }, [])
+
+    useEffect( () => {
+        return () =>  unsubscribe();
+      }, [])
+
     return (
         <div className="blog">
             {  

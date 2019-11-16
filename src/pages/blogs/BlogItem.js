@@ -1,6 +1,11 @@
 import React from 'react'
+import {firestore} from '../../firebase'
 
 const BlogItem = ({post}) => {
+    const docRef = firestore.doc(`posts/${post.id}`)
+    const deleteHandler = () => docRef.delete()
+    const rate = () => docRef.update({star: ++post.star})
+
     return (
         <div className="blog-card">
             <div className="blog-header">
@@ -26,8 +31,11 @@ const BlogItem = ({post}) => {
                     <p>{post.author}</p>
                 </div>
                 <div className="blog-badge blog-badge-red">
-                    <p>Rate</p>
-                    <i className="fas fa-star"></i>
+                    <p>{post.star}</p>
+                    <i className="fas fa-star" onClick={rate}></i>
+                </div>
+                <div className="blog-badge blog-badge-delete" onClick={deleteHandler}>
+                <i className="fas fa-trash-alt danger"></i>
                 </div>
                 </div>
 
