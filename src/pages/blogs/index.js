@@ -60,8 +60,10 @@ import {collectIdsAndDocs} from '../../utilis'
       }, [])
     return (
         
-            user? (<Blogs posts={posts} _addPost={_addPost} setAddPost={setAddPost} _changeHandler={_changeHandler} addPost={addPost} post={post}/>
-        ) : <Register/>
+        //     user? (<Blogs posts={posts} _addPost={_addPost} setAddPost={setAddPost} _changeHandler={_changeHandler} addPost={addPost} post={post}/>
+        // ) : <Register/>
+        <Blogs posts={posts} _addPost={_addPost} setAddPost={setAddPost} _changeHandler={_changeHandler} addPost={addPost} post={post}/>
+
     )
 }
 
