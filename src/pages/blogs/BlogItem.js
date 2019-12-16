@@ -5,7 +5,7 @@ const BlogItem = ({post}) => {
     const docRef = firestore.doc(`posts/${post.id}`)
     const deleteHandler = () => docRef.delete()
     const rate = () => docRef.update({star: ++post.star})
-    console.log(post.image)
+    
     return (
         <div className="blog-card">
             <div className="blog-header">

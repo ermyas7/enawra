@@ -21,11 +21,12 @@ import {collectIdsAndDocs} from '../../utilis'
 
     const _addPost = async () => {
 
-        if(post.title && post.body&&post.image && post.tags){
+        if( post.body&&post.image && post.tags){
             post.author = {
                 displayName: user.displayName,
                 email: user.email,
-                photoURL: user.photoURL}
+                photoURL: user.photoURL,
+                uid: user.uid}
             post.date = 'oct 15, 2019';
             post.star = 0;
             post.tags = [...post.tags.split(",")];
