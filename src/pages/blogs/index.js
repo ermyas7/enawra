@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react'
 import Blogs from './Blogs'
 import Register from '../../components/blogForm/Register'
 
-import {firestore, auth} from '../../firebase'
+import {firestore, auth, createUserProfileDocument} from '../../firebase'
 import {collectIdsAndDocs} from '../../utilis'
 
 
@@ -40,14 +40,15 @@ import {collectIdsAndDocs} from '../../utilis'
     let unsubscribeFromFirestore = null
     let unsubscribeFromAuth = null
 
-    useEffect( () => {
+    useEffect(  () => {
     unsubscribeFromFirestore = firestore.collection('posts')
       .onSnapshot(snapshot => {
           const posts = snapshot.docs.map(collectIdsAndDocs)
           setPosts(posts)
       })
       
-    unsubscribeFromAuth = auth.onAuthStateChanged(user => {
+    unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+        const user = await createUserProfileDocument(userAuth, null)
         setUser(user)
     })  
     }, [])

@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import {Link} from 'react-router-dom'
-import {signInWithGoogle} from '../../firebase'
-import { auth } from 'firebase'
+import {signInWithGoogle, createUserProfileDocument, auth} from '../../firebase'
+
 
 const Register = () => {
     const [newUser, setUser] = useState({
@@ -27,11 +27,13 @@ const Register = () => {
 
             //create user using email
             try{
-                const { user } = await auth().createUserWithEmailAndPassword(
+                const { user } = await auth.createUserWithEmailAndPassword(
                     newUser.email,
                     newUser.password,
                   );
-              await user.updateProfile({displayName: newUser.displayName})
+                  console.log(user.email)    
+               await createUserProfileDocument(user, {displayName: newUser.displayName});
+                    
               setUser({
                 displayName: '',
                 email: '',
