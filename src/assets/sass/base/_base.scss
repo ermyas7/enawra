@@ -11,8 +11,9 @@ html{
 
 body{
     box-sizing: border-box;
-    margin: 2rem;
-    background-image: linear-gradient(to left bottom, rgba($color-primary-light, .85), rgba($color-primary-dark, .75));
+    margin: 1rem;
+    // background-image: linear-gradient(to left bottom, rgba($color-primary-light, .85), rgba($color-primary-dark, .75));
+    background-color: $color-grey-light-2;
     background-position: center;
     background-size: cover;
     min-height: 100vh;

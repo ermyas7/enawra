@@ -5,7 +5,7 @@ const BlogItem = ({post}) => {
     const docRef = firestore.doc(`posts/${post.id}`)
     const deleteHandler = () => docRef.delete()
     const rate = () => docRef.update({star: ++post.star})
-
+    
     return (
         <div className="blog-card">
             <div className="blog-header">
@@ -14,7 +14,7 @@ const BlogItem = ({post}) => {
                 {post.title}
             </h1>
             </div>
-            <div className="blog-img"  style={blogImg}></div>
+            <div className="blog-img"  style={{backgroundImage: `url(${post.image})`}}></div>
             <div className="blog-body">
                 <p className="blog-body-text">
                 {post.body}
@@ -28,7 +28,7 @@ const BlogItem = ({post}) => {
                 </div>
                 <div className="blog-badge blog-badge-red">
                 <i className="far fa-user"></i>
-                    <p>{post.author}</p>
+                    <p>{post.author.displayName}</p>
                 </div>
                 <div className="blog-badge blog-badge-red">
                     <p>{post.star}</p>
@@ -52,8 +52,6 @@ const BlogItem = ({post}) => {
     )
 }
 
-const blogImg = {
-    backgroundImage: 'url(https://source.unsplash.com/user/erondu/1600x900)'
-}
+
 
 export default BlogItem

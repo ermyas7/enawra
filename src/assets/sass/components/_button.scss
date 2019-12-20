@@ -1,0 +1,22 @@
+.btn{
+    display: inline-block;
+    padding: 1.5rem 2.5rem;
+    text-transform: uppercase;
+    background: none;
+    outline: none;
+    border: none;
+    font-size: 1.8rem;
+    font-weight: 500;
+    border-radius: 3rem;
+    transition: all .3s;
+    text-decoration: none;
+
+    &:hover{
+        transform: translateY(-2px) scale(1.05);
+    }
+
+    &-blue{
+        color: $color-white;
+        background-color: $color-primary;
+    }
+}
