@@ -1,13 +1,13 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-
+import Auth from '../auth';
 import './home.scss'
 
 
 const index = () => {
     return (
         <div className="home">
-            <div className="home-content">
+            {/* <div className="home-content">
                 <h1 className="heading-primary home-heading"> 
                     <span className="heading-primary-main">meet new people</span>
                     <span className="heading-primary-sub">
@@ -18,7 +18,8 @@ const index = () => {
                 <Link to="/blogs" className="btn btn-blue">Get Started</Link> 
                 </div>
                 
-            </div>
+            </div> */}
+            <Auth></Auth>
         </div>
     )
 }
