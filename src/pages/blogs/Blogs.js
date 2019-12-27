@@ -3,16 +3,17 @@ import './blogs.scss'
 import BlogItem from './BlogItem'
 import AddBlog from '../../components/blogForm/AddBlog'
 
+
 const Blogs = (props) => {
-    const {posts, setAddPost, _addPost, _changeHandler, addPost, post} = props
+    const {posts, setAddPost, addPost, _changeHandler, showForm, post} = props
     return (
         <div className="blog">
             {  
-                !addPost?
+                !showForm?
                 <button className="blog-add"
-                onClick={() => setAddPost(true)}>Add Blog</button> :
+                onClick={() => setAddPost()}>Add Blog</button> :
                 <AddBlog changeHandler = {_changeHandler} post={post}
-                addPost={_addPost}/>
+                addPost={addPost}/>
                 }
 
             <div className="blog-lists">

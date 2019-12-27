@@ -1,17 +1,16 @@
-import React, {useState, useEffect} from 'react'
-
+import React, {useState, useContext} from 'react'
 import Blogs from './Blogs'
-import Register from '../../components/blogForm/Register'
 
-import {firestore, auth, createUserProfileDocument} from '../../firebase'
-import {collectIdsAndDocs} from '../../utilis'
 
+import postsContext from '../../context/posts/postsContext';
+import userContext from '../../context/user/userContext';
 
  const Index = () => {
-     const [posts, setPosts] = useState([]);
-     const [addPost, setAddPost] = useState(false);
+     const PostsContext = useContext(postsContext);
+     const UserContext = useContext(userContext);
+     const {posts, showForm, displayForm, addPost} = PostsContext;
     const [post, setPost] = useState({});
-    const [user, setUser] = useState(null);
+
 
     const _changeHandler = (evt) => {
         const {name, value} = evt.target;
@@ -19,52 +18,11 @@ import {collectIdsAndDocs} from '../../utilis'
         setPost(post);
     }
 
-    const _addPost = async () => {
+    const newPost = () => addPost(post, UserContext.user)
 
-        if( post.body&&post.image && post.tags){
-            post.author = {
-                displayName: user.displayName,
-                email: user.email,
-                photoURL: user.photoURL,
-                uid: user.uid}
-            post.date = 'oct 15, 2019';
-            post.star = 0;
-            post.tags = [...post.tags.split(",")];
-            const docRef = await firestore.collection('posts').add(post);
-            setPost({});
-            setAddPost(false);
-        }
-    }
-
-    //store a function to clean up after the component unmount
-    let unsubscribeFromFirestore = null
-    let unsubscribeFromAuth = null
-
-    useEffect(  () => {
-    unsubscribeFromFirestore = firestore.collection('posts')
-      .onSnapshot(snapshot => {
-          const posts = snapshot.docs.map(collectIdsAndDocs)
-          setPosts(posts)
-      })
-      
-    unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-        const user = await createUserProfileDocument(userAuth, null)
-        setUser(user)
-    })  
-    }, [])
-
-    useEffect( () => {
-        return () =>  unsubscribeFromFirestore();
-      }, [])
-
-      useEffect( () => {
-        return () =>  unsubscribeFromAuth();
-      }, [])
+    
     return (
-        
-        //     user? (<Blogs posts={posts} _addPost={_addPost} setAddPost={setAddPost} _changeHandler={_changeHandler} addPost={addPost} post={post}/>
-        // ) : <Register/>
-        <Blogs posts={posts} _addPost={_addPost} setAddPost={setAddPost} _changeHandler={_changeHandler} addPost={addPost} post={post}/>
+        <Blogs posts={posts} showForm={showForm} setAddPost={displayForm} _changeHandler={_changeHandler} addPost={newPost} post={post}/>
 
     )
 }

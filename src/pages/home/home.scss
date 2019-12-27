@@ -2,15 +2,15 @@
 
 .home{
         width: 100%;
-        height: calc(100vh - 7rem);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 10;
-        background-image: linear-gradient(to right bottom, rgba($color-secondary-dark, 0.75), rgba($color-secondary-light, 0.75)), url('../../assets/images/img-1.jpg');
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
+        // height: calc(100vh - 7rem);
+        // display: flex;
+        // justify-content: center;
+        // align-items: center;
+        // z-index: 10;
+        // background-image: linear-gradient(to right bottom, rgba($color-secondary-dark, 0.75), rgba($color-secondary-light, 0.75)), url('../../assets/images/img-1.jpg');
+        // background-position: center;
+        // background-size: cover;
+        // background-repeat: no-repeat;
 
         &-heading{
             text-align: center;

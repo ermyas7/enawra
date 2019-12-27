@@ -9,7 +9,7 @@ const BlogItem = ({post}) => {
     return (
         <div className="blog-card">
             <div className="blog-header">
-            <p className="blog-date">{post.date}</p>
+            <p className="blog-date">12-may-2019 </p>
             <h1 className="blog-title">
                 {post.title}
             </h1>
